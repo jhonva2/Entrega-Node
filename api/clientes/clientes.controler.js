@@ -56,4 +56,18 @@ const getAllClients = async (request, response) => {
   }
 };
 
-module.exports = { createClient, getAllClients, updateClients };
+const deleteClient = async (request, response) => {
+  try {
+    const id_client = request.params.id_client;
+    const client = await Client.findByIdAndDelete(id_client);
+    response.json({
+      status: 200,
+      message: "deleted",
+      data: client,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { createClient, getAllClients, updateClients, deleteClient };

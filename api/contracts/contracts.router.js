@@ -1,11 +1,17 @@
 const express = require("express");
 
-
-const {createContract} = require("./contracts.controler");
-const {isAuth} = require("../middleware/auth.middleware")
+const {
+  createContract,
+  getAllContracts,
+  updateContracts,
+  deleteContract,
+} = require("./contracts.controler");
+const { isAuth } = require("../middleware/auth.middleware");
 const contractRouter = express.Router();
 
-
-
 contractRouter.post("/", createContract);
-module.exports = {contractRouter}
+contractRouter.get("/", getAllContracts);
+contractRouter.patch("/", updateContracts);
+contractRouter.delete("/", deleteContract);
+
+module.exports = { contractRouter };
